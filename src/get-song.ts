@@ -8,5 +8,6 @@ export default function (): Song {
   song.setId(s.id);
   song.setTitle(s.title);
   song.setArtist(s.artist);
+
   return song;
 }

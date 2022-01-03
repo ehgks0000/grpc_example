@@ -10,8 +10,9 @@ import { addComment, registerListener } from "./live-chat";
 
 const PORT = process.env.PORT || "3000";
 class SongsServer implements ISongsServer {
+  [name: string]: grpc.UntypedHandleCall;
   getSong(
-    call: grpc.ServerUnaryCall<Empty, Song>,
+    _call: grpc.ServerUnaryCall<Empty, Song>,
     callback: sendUnaryData<Song>
   ): void {
     console.log(`${new Date().toISOString()}    getSong`);

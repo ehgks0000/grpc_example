@@ -9,7 +9,7 @@
         "noImplicitAny": false,
         "strictNullChecks": false,
         "baseUrl": "./",
-        "typeRoots": ["./src/proto","node_modules/@types"],
+        "typeRoots": ["node_modules/@types"],
         "esModuleInterop": true
     }
 }
