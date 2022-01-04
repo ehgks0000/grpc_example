@@ -7,16 +7,18 @@ import getSong from "./get-song";
 import addSong from "./add-song";
 import getChat from "./get-chat";
 import { addComment, registerListener } from "./live-chat";
+import { initialize } from "./db";
 
 const PORT = process.env.PORT || "3000";
+
 class SongsServer implements ISongsServer {
   [name: string]: grpc.UntypedHandleCall;
-  getSong(
+  async getSong(
     _call: grpc.ServerUnaryCall<Empty, Song>,
     callback: sendUnaryData<Song>
-  ): void {
+  ): Promise<void> {
     console.log(`${new Date().toISOString()}    getSong`);
-    callback(null, getSong());
+    callback(null, await getSong());
   }
   addSongs(
     call: grpc.ServerReadableStream<Song, Empty>,
@@ -47,7 +49,9 @@ class SongsServer implements ISongsServer {
   }
 }
 
-function serve(): void {
+async function serve() {
+  await initialize();
+
   const server = new grpc.Server();
   // @ts-ignore
   server.addService(SongsService, new SongsServer());

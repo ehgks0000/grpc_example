@@ -1,5 +1,5 @@
 import { Song } from "./proto/songs_pb";
-import db from "./db";
+import db from "./db_mock";
 
 export default function (song: Song): void {
   // Use of `any` required due to bug in @types/lowdb

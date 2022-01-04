@@ -8,7 +8,10 @@
 $ yarn build:proto
 $ yarn build
 
-$ yarn start // 서버 실행
+// 서버 실행
+// nf -e .env yarn start
+// 위 명령어로 `env` 파일을 같이 실행
+$ yarn start
 
 $ yarn ./dist/client/get-song.js // 클라 실행
 ```

@@ -1,5 +1,5 @@
 import { Comment } from "./proto/songs_pb";
-import db from "./db";
+import db from "./db_mock";
 
 export default async function (songId: number): Promise<Comment[]> {
   const comments = db.get("comments").value() as Comment.AsObject[];
