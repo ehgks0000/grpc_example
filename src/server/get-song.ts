@@ -1,19 +1,12 @@
-import { db } from "../db";
+import { findOne } from "../db/adapter";
 import { Song } from "../proto/songs_pb";
-
-// type MongoSong = {
-//   _id: string;
-//   title: string;
-//   artist: string;
-// };
 
 export default async function (): Promise<Song> {
   const song = new Song();
 
-  const songs = db().collection<Song.AsObject>("songs");
-  const s = await songs.findOne({ title: "test" });
+  const s = await findOne<Song.AsObject>("songs");
 
-  song.setId(1);
+  song.setId(s.id);
   song.setTitle(s.title);
   song.setArtist(s.artist);
 

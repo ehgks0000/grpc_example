@@ -1,7 +1,7 @@
 import { Comment } from "../proto/songs_pb";
 import db from "../db_mock";
 
-export default async function (songId: number): Promise<Comment[]> {
+export default async function (songId: string): Promise<Comment[]> {
   const comments = db.get("comments").value() as Comment.AsObject[];
   return comments
     .filter((comment) => comment.songId === songId)

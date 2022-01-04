@@ -10,9 +10,9 @@ message Song {
   string artist = 3;
 }
 
-message Songs {
-    repeated Song songs = 1;
-}
+// message SongsResponse {
+//     repeated Song song_array = 1;
+// }
 
 message Comment {
   string song_id = 1;
@@ -22,7 +22,8 @@ message Comment {
 
 service Songs {
   rpc GetSong(google.protobuf.Empty) returns (Song) {};
-  rpc GetSongs(google.protobuf.Empty) returns (Songs) {};
+  rpc GetSongs(google.protobuf.Empty) returns (stream Song) {};
+//   rpc GetSongs(google.protobuf.Empty) returns (SongsResponse) {};
   rpc AddSongs(stream Song) returns (google.protobuf.Empty) {};
   rpc GetChat(Song) returns (stream Comment) {};
   rpc LiveChat(stream Comment) returns (stream Comment) {};

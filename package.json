@@ -1,15 +1,15 @@
 {
   "name": "grpc-example",
   "version": "1.0.0",
-  "description": "",
+  "description": "grpc 연습",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn run tsc",
-    "build:proto": "sh ./scripts/build-protos.sh ./songs.proto ./src/proto",
+    "build": "rm -rf ./dist && yarn run tsc",
+    "build:proto": "rm -rf ./src/proto && sh ./scripts/build-protos.sh ./songs.proto ./src/proto",
     "start": "PORT=3333 node ./dist/index.js"
   },
-  "author": "",
+  "author": "DoHan Kim",
   "license": "ISC",
   "dependencies": {
     "@grpc/grpc-js": "1.2.2",

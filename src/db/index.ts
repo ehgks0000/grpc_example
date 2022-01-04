@@ -1,5 +1,5 @@
 import { Db, MongoClient } from "mongodb";
-import { MONGODB_URL } from "./config";
+import { MONGODB_URL } from "../config";
 
 let connection: MongoClient | undefined;
 let dbConnection: Db | undefined;
@@ -12,6 +12,8 @@ export async function initialize() {
     dbConnection = connection.db(
       new URL(MONGODB_URL).pathname.replace(/^\//, "")
     );
+
+    console.log("mongoDB is connected!");
   }
 }
 

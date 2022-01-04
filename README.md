@@ -9,7 +9,7 @@ $ yarn build:proto
 $ yarn build
 
 // 서버 실행
-// nf -e .env yarn start
+// nf -e .env run yarn start
 // 위 명령어로 `env` 파일을 같이 실행
 $ yarn start
 
