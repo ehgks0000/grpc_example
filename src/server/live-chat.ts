@@ -1,5 +1,5 @@
-import { Comment } from "./proto/songs_pb";
-import db from "./db_mock";
+import { Comment } from "../proto/songs_pb";
+import db from "../db_mock";
 
 type ListenerFn = (c: Comment) => void;
 

@@ -1,5 +1,5 @@
-import { db } from "./db";
-import { Song } from "./proto/songs_pb";
+import { db } from "../db";
+import { Song } from "../proto/songs_pb";
 
 // type MongoSong = {
 //   _id: string;

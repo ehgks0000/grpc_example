@@ -5,19 +5,24 @@ package songs;
 import "google/protobuf/empty.proto";
 
 message Song {
-  int32 id = 1;
+  string id = 1;
   string title = 2;
   string artist = 3;
 }
 
+message Songs {
+    repeated Song songs = 1;
+}
+
 message Comment {
-  int32 song_id = 1;
+  string song_id = 1;
   string username = 2;
   string body = 3;
 }
 
 service Songs {
   rpc GetSong(google.protobuf.Empty) returns (Song) {};
+  rpc GetSongs(google.protobuf.Empty) returns (Songs) {};
   rpc AddSongs(stream Song) returns (google.protobuf.Empty) {};
   rpc GetChat(Song) returns (stream Comment) {};
   rpc LiveChat(stream Comment) returns (stream Comment) {};
