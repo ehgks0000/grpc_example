@@ -1,8 +1,18 @@
-import { Filter } from "mongodb";
+import { Filter, InsertOneOptions, ObjectId } from "mongodb";
 import { db } from ".";
 
 function convert({ _id, ...rest }: any) {
   return { id: _id.toString(), ...rest };
+}
+
+export async function insert<T extends { id: string }>(
+  collectionName: string,
+  { id, ...rest }: T,
+  options: InsertOneOptions = {}
+) {
+  return db()
+    .collection(collectionName)
+    .insertOne({ _id: new ObjectId(id), ...rest }, options);
 }
 
 export async function find<T>(

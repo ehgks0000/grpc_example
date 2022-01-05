@@ -19,18 +19,7 @@ export class SongsServer implements ISongsServer {
     callback(null, await getSong());
   }
 
-  async getSongs(
-    call: grpc.ServerWritableStream<Empty, Song>
-    // callback: sendUnaryData<Song>
-  ) {
-    //
-    // const song = call.request as Song;
-    // const comments = await getChat(song.getId());
-    // for (const comment of comments) {
-    //   call.write(comment);
-    // }
-    // call.end();
-    //
+  async getSongs(call: grpc.ServerWritableStream<Empty, Song>) {
     const songs = await getSongs();
 
     for (const song of songs) {
@@ -38,15 +27,14 @@ export class SongsServer implements ISongsServer {
     }
     console.log(`${new Date().toISOString()}    getSongs`);
     call.end();
-    // callback(null, await getSongs());
   }
   addSongs(
     call: grpc.ServerReadableStream<Song, Empty>,
     callback: sendUnaryData<Empty>
   ): void {
     console.log(`${new Date().toISOString()}    addSongs`);
-    call.on("data", (song: Song) => {
-      addSong(song);
+    call.on("data", async (song: Song) => {
+      await addSong(song);
     });
     call.on("end", () => callback(null, new Empty()));
   }
